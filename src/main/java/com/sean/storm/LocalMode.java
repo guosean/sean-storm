@@ -1,7 +1,6 @@
 package com.sean.storm;
 
 import org.apache.storm.Config;
-import org.apache.storm.LocalCluster;
 import org.apache.storm.StormSubmitter;
 import org.apache.storm.generated.AlreadyAliveException;
 import org.apache.storm.generated.AuthorizationException;
@@ -37,10 +36,10 @@ public class LocalMode {
         conf.put(Config.TOPOLOGY_WORKERS, 4);
         conf.put(Config.TOPOLOGY_DEBUG, true);
 
-        LocalCluster cluster = new LocalCluster();
-        cluster.submitTopology("mytopology", conf, builder.createTopology());
+//        LocalCluster cluster = new LocalCluster();
+        StormSubmitter.submitTopology("mytopology", conf, builder.createTopology());
         Utils.sleep(10000);
-        cluster.shutdown();
+//        cluster.shutdown();
     }
 
 }
